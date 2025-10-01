@@ -66,8 +66,8 @@ project/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/face-recognition-attendance.git
-   cd face-recognition-attendance
+   git clone https://github.com/Avinash-ml07/Tri-Angle-Vision-Intelligent-Face-Recognition-Attendance-System
+   cd Tri-Angle-Vision-Intelligent-Face-Recognition-Attendance-System
 
 
 python -m venv venv
