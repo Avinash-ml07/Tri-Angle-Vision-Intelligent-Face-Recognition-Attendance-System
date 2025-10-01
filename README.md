@@ -1,53 +1,75 @@
-``` python
-import tkinter as tk
-from tkinter import messagebox, ttk, filedialog
-import os
-from database_setup import initialize_databases
-from face_capture import FaceCapture
-from face_recognition_system import FaceRecognitionSystem
-from attendance_manager import AttendanceManager
-from video_processor import VideoProcessor
+# 🎯 Face Recognition Attendance System
 
-class FaceRecognitionApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Face Recognition Attendance System")
-        self.root.geometry("850x750")
-        
-        # Initialize components
-        self.face_capture = FaceCapture()
-        self.recognition_system = FaceRecognitionSystem()
-        self.attendance_manager = AttendanceManager()
-        self.video_processor = VideoProcessor()
-        
-        # Initialize databases
-        initialize_databases()
-        
-        # Setup UI
-        self.setup_ui()
-        
-    def setup_ui(self):
-        """Setup the user interface"""
-        # Title
-        title_label = tk.Label(self.root, text="Face Recognition Attendance System", 
-                              font=("Arial", 16, "bold"))
-        title_label.pack(pady=10)
-        
-        # Create notebook for tabs
-        notebook = ttk.Notebook(self.root)
-        notebook.pack(fill='both', expand=True, padx=20, pady=10)
-        
-        # Tab 1: Face Capture
-        self.setup_capture_tab(notebook)
-        
-        # Tab 2: Recognition & Attendance
-        self.setup_recognition_tab(notebook)
-        
-        # Tab 3: Video Attendance Processing
-        self.setup_video_attendance_tab(notebook)
-        
-        # Tab 4: Attendance Records
-        self.setup_attendance_tab(notebook)
-        
-    # ... Rest of the code remains the same ...
-```
+A **Tkinter-based Desktop Application** that uses **face recognition** to register, identify, and manage attendance records. The system supports:
+- Live camera recognition
+- Face registration (with multiple captures)
+- Video-based attendance processing
+- Attendance record storage and export
+
+---
+
+## 📌 Features
+
+### 1. **Face Registration**
+- Register new people by capturing **3 clear face images**.
+- Ensures good lighting and face positioning.
+- Stores captured faces in the system for recognition.
+
+### 2. **Live Recognition & Attendance**
+- Start **real-time face recognition** using a webcam.
+- Automatically marks attendance for recognized individuals.
+- Updates records instantly.
+
+### 3. **Video Attendance Processing**
+- Upload and process a pre-recorded video to mark attendance.
+- Supports multiple formats: `MP4, AVI, MOV, MKV, WMV, FLV`.
+- Saves **undetected faces** for later review.
+- Adjustable **min/max expected faces per frame** for accuracy.
+
+### 4. **Attendance Records Management**
+- View all attendance logs in a tabular format.
+- Generate daily attendance summary.
+- Export records as **CSV files** for external use.
+- Review and clear undetected faces folder.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python** (>=3.9 recommended)
+- **Tkinter** (GUI)
+- **OpenCV** (for face capture & video processing)
+- **face_recognition** library (dlib-based recognition)
+- **SQLite** (database for attendance & user management)
+
+---
+
+## 📂 Project Structure
+
+project/
+│── app.py (main script to run GUI)
+│── database_setup.py (DB initialization)
+│── face_capture.py (handles capturing faces)
+│── face_recognition_system.py (live recognition logic)
+│── attendance_manager.py (attendance storage & summary)
+│── video_processor.py (video upload & processing)
+│── faces.db/ (stored face encodings/images)
+│── attendance.db (SQLite DB)
+│── undetected_faces/ (faces not recognized in videos)
+
+
+
+
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/face-recognition-attendance.git
+   cd face-recognition-attendance
+
+
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
