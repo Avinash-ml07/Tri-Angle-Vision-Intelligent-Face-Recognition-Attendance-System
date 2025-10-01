@@ -47,15 +47,15 @@ A **Tkinter-based Desktop Application** that uses **face recognition** to regist
 ## 📂 Project Structure
 
 project/
-│── app.py (main script to run GUI)
-│── database_setup.py (DB initialization)
-│── face_capture.py (handles capturing faces)
-│── face_recognition_system.py (live recognition logic)
-│── attendance_manager.py (attendance storage & summary)
-│── video_processor.py (video upload & processing)
-│── faces.db/ (stored face encodings/images)
-│── attendance.db (SQLite DB)
-│── undetected_faces/ (faces not recognized in videos)
+│── app.py (main script to run GUI)<br>
+│── database_setup.py (DB initialization)<br>
+│── face_capture.py (handles capturing faces)<br>
+│── face_recognition_system.py (live recognition logic)<br>
+│── attendance_manager.py (attendance storage & summary)<br>
+│── video_processor.py (video upload & processing)<br>
+│── faces.db/ (stored face encodings/images)<br>
+│── attendance.db (SQLite DB)<br>
+│── undetected_faces/ (faces not recognized in videos)<br>
 
 
 
