@@ -14,9 +14,19 @@ class AttendanceManager:
         try:
             conn = sqlite3.connect('attendance.db')
             c = conn.cursor()
+            # Check if last attendance for this person was within the last 5 minutes
+            c.execute("SELECT time FROM attendance WHERE name=? AND date=? ORDER BY time DESC LIMIT 1", (name, date))
+            last_record = c.fetchone()
+
+            if last_record:
+                last_time = datetime.strptime(last_record[0], '%H:%M:%S')
+                now_time = datetime.now()
+                if (now_time - last_time).seconds < 300:  # 5 minutes
+                    return False  # Don't mark again too soon
+
             
-            # Check if attendance already marked for today
-            c.execute("SELECT * FROM attendance WHERE name=? AND date=?", (name, date))
+            current_time = datetime.now().strftime('%H:%M:%S')
+            c.execute("INSERT INTO attendance (name, date, time) VALUES (?, ?, ?)", (name, date, current_time))
             if c.fetchone() is None:
                 current_time = datetime.now().strftime('%H:%M:%S')
                 c.execute("INSERT INTO attendance (name, date, time) VALUES (?, ?, ?)",
